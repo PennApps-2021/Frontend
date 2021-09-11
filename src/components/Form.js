@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(5, 0, 2),
+    margin: theme.spacing(2, 0, 2),
     borderRadius: "50px",
     background: "#4C5391",
     "&:hover": {
@@ -77,7 +77,7 @@ const majorList = [
   { value: "english", label: "English" },
 ];
 
-const Form = () => {
+const Form = (props) => {
   const classes = useStyles();
   const [gpa, setGPA] = useState("");
   const [interests, setInterests] = useState({ selectedOption: null });
@@ -144,8 +144,18 @@ const Form = () => {
           variant="contained"
           color="primary"
           className={classes.submit}
+          onClick = {props.nextPage}
         >
           Start Matching
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick = {props.lastPage}
+        >
+          Back
         </Button>
       </form>
     </div>

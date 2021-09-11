@@ -22,17 +22,18 @@ class Main extends React.Component {
 
   componentWillUnmount() {}
 
-  render() {
-    switch (this.state.state) {
-      case 0:
-        return <Landing goToForm={() => this.changePage(2)}></Landing>;
-      case 1:
-        return <Form />;
-      case 2:
-        return <Matching goToForm={() => this.changePage(1)}></Matching>;
-      default:
-        return <p>Error, please try again</p>;
-    }
+
+    render() {
+        switch(this.state.state) {
+            case 0:
+                return <Landing nextPage = {() => this.changePage(1)}></Landing>
+            case 1:
+                return <Form lastPage = {() => this.changePage(0)} nextPage = {() => this.changePage(2)}/>;
+            case 2:
+                return <Matching lastPage = {() => this.changePage(1)}></Matching>
+            default:
+                return <p>Error, please try again</p>
+        }
   }
 }
 

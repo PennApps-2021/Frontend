@@ -1,42 +1,250 @@
-import { useEffect, useState, useRef } from "react";
-
-import styles from "../assets/cards.css";
+import {useEffect, useState, useRef} from 'react';
+import '../assets/cards.css';
+import LoopRoundedIcon from '@material-ui/icons/LoopRounded';
+import BarGraph from './BarGraph';
 
 function CourseCard(props) {
-  let fullName = props.firstName + " " + props.lastName;
 
-  //Sets the background of a div to the profile picture
-  let fullStyle = {
-    backgroundImage: "url('" + props.profile + "')",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-  };
+    const [shouldFlip, setFlip] = useState(false);
 
-  /*Sets the font size of the description text to fill most of its container.
-    The formula for calculating this is dependent on text length, and found using exponential regression.
-    */
-  let descriptionLength = 100;
+    const containerRef = useRef();
 
-  let mentorStyle = {
-    fontSize: Math.round(22.8669 * Math.pow(0.9988, descriptionLength)) + "px",
-  };
+    const callbackFunction = (entries) => {
+        const [entry] = entries;
+        setFlip(entry.isIntersecting)
+    }
 
-  let flipStyle = {};
+    const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1
+    }
 
-  return (
-    <div className="cardDiv">
-      <div style={flipStyle} className="cardDivInner">
-        <div style={fullStyle} className="cardDivFront">
-          <div className="courseName">{props.courseName}</div>
-        </div>
-        <div className={"cardDivBack"}>
-          <p style={mentorStyle} className={"courseDescription"}>
-            {props.courseDescription}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+    function downHandler({ key }) {
+        if (key === "ArrowUp" || key == "ArrowDown") {
+          setFlip(!shouldFlip);
+        } else if (key === "ArrowRight") {
+            props.nextCard();
+        } else if (key == "ArrowLeft") {
+            props.lastCard();
+        }
+      }
+
+    useEffect(() => {
+        window.addEventListener("keydown", downHandler);
+        // Remove event listeners on cleanup
+        return () => {
+          window.removeEventListener("keydown", downHandler);
+        };
+      }, [shouldFlip]); 
+
+    let flipStyle;
+
+
+    if(shouldFlip) {
+        flipStyle = {
+            transform: 'rotateX(180deg)', /* part of flipping animation */
+        }
+    } else {
+        flipStyle = {
+            transform: 'rotateX(0deg)', /* part of flipping animation */
+        }
+    }
+
+
+    let courseData = props.courseData;
+    let name = courseData.name;
+    let title = courseData.subject + "" + courseData.number;
+    let credits = courseData.credits;
+    let averageGPA = courseData.averageGPA;
+    let teachers = courseData.teachers;
+    let description = courseData.description;
+    let degreeAttributes = courseData.degreeAttributes;
+
+
+    let regularIconStyle = {
+        fontSize: "35px",
+        position: 'fixed',
+        bottom: '5',
+        right: '5'
+    }
+
+     
+    let data = [];
+
+    let x = [];
+    let y = [];
+
+    for (var key of Object.keys(courseData)) {
+
+        if(key.length <= 2) {
+            x.push(key);
+            y.push(parseInt(courseData[key]));
+        }
+    }
+
+    let names = ["Kathy", "Adam", "Joy", "Lewis", "Johnathon", "Ray", "Amanda", "Liam", "Noah", "Lucas", 
+    'Liam',
+    'Noah',
+    'Oliver',
+    'Elijah',
+    'William',
+    'James',
+    'Benjamin',
+    'Lucas',
+    'Henry',
+    'Alexander',
+    'Mason',
+    'Michael',
+    'Ethan',
+    'Daniel',
+    'Jacob',
+    'Logan',
+    'Jackson',
+    'Levi',
+    'Sebastian',
+    'Mateo',
+    'Jack',
+    'Owen',
+    'Theodore',
+    'Aiden',
+    'Samuel',
+    'Joseph',
+    'John',
+    'David',
+    'Wyatt',
+    'Matthew',
+    'Luke',
+    'Asher',
+    'Carter',
+    'Julian',
+    'Grayson',
+    'Leo',
+    'Olivia',
+    'Emma',
+    'Ava',
+    'Charlotte',
+    'Sophia',
+    'Amelia',
+    'Isabella',
+    'Mia',
+    'Evelyn',
+    'Harper',
+    'Camila',
+    'Gianna',
+    'Abigail',
+    'Luna',
+    'Ella',
+    'Elizabeth',
+    'Sofia',
+    'Emily',
+    'Avery',
+    'Mila',
+    'Scarlett',
+    'Eleanor',
+    'Madison',
+    'Layla',
+    'Penelope',
+    'Aria',
+    'Chloe',
+    'Grace',
+    'Ellie',
+    'Nora',
+    ]
+
+    let phrases = [
+        "⭐⭐⭐⭐ Defintely recommend this class",
+        "⭐⭐ Ok class, takes a lot of time",
+        "⭐ Terrible professor, DO NOT TAKE!",
+        "⭐⭐⭐⭐⭐ No finals, no tests, easy A",
+        "⭐⭐⭐⭐ Fun class, but it takes some effort",
+        "⭐⭐⭐⭐ Had a lot of fun in this class",
+        "⭐⭐⭐⭐⭐ Loved the professor!!!",
+        "⭐⭐⭐ Class was alright!",
+        "⭐⭐⭐ Decent course, but lot of reading",
+        "⭐⭐⭐⭐⭐ Absolutely loved the class!",
+    ]
+
+    function randomInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+
+    function getRandomName() {
+        return names[randomInteger(0, names.length - 1)]; 
+    }
+
+    function getRandomPhrase() {
+        return phrases[randomInteger(0, phrases.length - 1)]; 
+    }
+
+
+
+
+
+
+
+  return(
+
+        <div className = 'cardDiv'>
+            <div style = {flipStyle} className = 'cardDivInner'>
+                <div className = 'cardDivFront'>
+                    <div className = 'courseName'>
+                        {title + " - " + name}
+                    </div>
+                    <p className = 'courseDescription'> 
+                        {description}
+                    </p>
+
+                    <div className = "courseDataFlex">
+                        <p><b className = "boldStyle">Credits💳</b><br/>{credits}</p>
+                        <p><b className = "boldStyle"> Average GPA💯</b> <br/>{averageGPA}</p>
+                        <p><b className = "boldStyle">Requirement Fufilled✅</b> <br/>{degreeAttributes}</p>
+                        <p><b className = "boldStyle">Professor🧑‍🏫</b> <br/>{teachers}</p>
+                    </div>
+
+                    {!shouldFlip
+
+                    ?
+                    <LoopRoundedIcon onClick = {() => setFlip(!shouldFlip)} style = {regularIconStyle}  />
+                    :
+                        null
+                    }
+
+                </div>
+                
+                <div className = 'cardDivBack'>
+                    <br></br>
+                    <BarGraph x = {x} y = {y} className = {title}/>
+                    <br/>
+                    <b className = "boldStyle">Student Reviews</b>
+
+                    <p>
+                        {getRandomPhrase() + ' - ' + getRandomName()}
+
+                    </p>
+
+                    <p>
+                        {getRandomPhrase() + ' - ' + getRandomName()}
+
+                    </p>
+
+                    <p>
+                        {getRandomPhrase() + ' - ' + getRandomName()}
+
+                    </p>
+
+                {shouldFlip
+
+                ?
+                <LoopRoundedIcon onClick = {() => setFlip(!shouldFlip)} style = {regularIconStyle}  />
+                :
+                    null
+                }
+                    
+                </div>
+            </div>
+            </div>
+    )
 }
 
 export default CourseCard;

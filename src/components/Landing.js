@@ -31,13 +31,13 @@ class Landing extends React.Component {
 
         <p>Match you with your favorite course!</p>
 
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.props.goToForm}
+        <button
+          className = "searchBtn"
+          onClick={this.props.nextPage}
+          style = {{width: "200px"}}
         >
-          Getting Started
-        </Button>
+          Get Started
+        </button>
         <img alt="Long Cloud 1" src={LongCloud} className="longCloud" />
         <img alt="Medium Cloud 1" src={MediumCloud} className="mediumCloud" />
         <img
