@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "./Form";
-import Landing from './Landing';
-import Matching from './Matching';
+import Landing from "./Landing";
+import Matching from "./Matching";
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -22,18 +22,17 @@ class Main extends React.Component {
 
   componentWillUnmount() {}
 
-
-    render() {
-        switch(this.state.state) {
-            case 0:
-                return <Landing goToForm = {() => this.changePage(2)}></Landing>
-            case 1:
-                return <Form />;
-            case 2:
-                return <Matching goToForm = {() => this.changePage(1)}></Matching>
-            default:
-                return <p>Error, please try again</p>
-        }
+  render() {
+    switch (this.state.state) {
+      case 0:
+        return <Landing goToForm={() => this.changePage(2)}></Landing>;
+      case 1:
+        return <Form />;
+      case 2:
+        return <Matching goToForm={() => this.changePage(1)}></Matching>;
+      default:
+        return <p>Error, please try again</p>;
+    }
   }
 }
 

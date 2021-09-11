@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import FaceIcon from "@material-ui/icons/Face";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
+import Select from "react-select";
+import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,89 +22,120 @@ const useStyles = makeStyles((theme) => ({
     borderStyle: "solid",
     borderColor: "black",
     borderRadius: "50px",
+    backgroundColor: "white",
   },
-  avatar: {
+  title: {
+    padding: "20px",
+  },
+  label: {
+    textAlign: "center",
+    marginBottom: "5px",
+  },
+  human: {
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    fontSize: "50px",
+    color: "#4c5391",
+  },
+  heart: {
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    fontSize: "50px",
+    color: "#F49493",
+  },
+  course: {
     marginTop: theme.spacing(1),
     fontSize: "50px",
+    color: "#4c5391",
   },
   form: {
     width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(5, 0, 2),
+    borderRadius: "50px",
+    background: "#4C5391",
+    "&:hover": {
+      background: "#F49493",
+    },
+  },
+  field: {
+    marginTop: theme.spacing(5),
   },
 }));
 
+const interestList = [
+  { value: "psychology", label: "Psychology" },
+  { value: "westernculture", label: "Western Culture" },
+  { value: "easternculture", label: "Eastern Culture" },
+];
+
+const majorList = [
+  { value: "computerscience", label: "Computer Science" },
+  { value: "math", label: "Math" },
+  { value: "english", label: "English" },
+];
+
 const Form = () => {
   const classes = useStyles();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [gpa, setGPA] = useState("");
+  const [interests, setInterests] = useState({ selectedOption: null });
+  const [majors, setMajors] = useState({ selectedOption: null });
+
+  const handleChangeGPA = (e) => {
+    const onlyNums = e.target.value.replace(/[^0-9.]/g, "");
+    setGPA(onlyNums);
+  };
 
   return (
     <div className={classes.paper}>
-      <FaceIcon className={classes.avatar} />
-      <FavoriteIcon className={classes.avatar} />
-      <LocalLibraryIcon className={classes.avatar} />
-      <Typography component="h1" variant="h5">
-        Let's learn more about you
+      <FaceIcon className={classes.human} />
+      <FavoriteIcon className={classes.heart} />
+      <LocalLibraryIcon className={classes.course} />
+      <Typography component="h1" variant="h5" className={classes.title}>
+        Help us better know you
       </Typography>
       <form className={classes.form} noValidate>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} className={classes.field}>
+            <InputLabel className={classes.label}>Majors *</InputLabel>
+            <Select
+              isMulti
+              name="majors"
+              options={majorList}
+              className="basic-multi-select"
+              classNamePrefix="select"
+              onChange={(e) => {
+                setMajors(e);
+              }}
+              autoFocus={true}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} className={classes.field}>
+            <InputLabel className={classes.label}>Interests *</InputLabel>
+            <Select
+              isMulti
+              name="interests"
+              options={interestList}
+              className="basic-multi-select"
+              classNamePrefix="select"
+              onChange={(e) => setInterests(e)}
+              autoFocus={true}
+            />
+          </Grid>
+          <Grid item xs={12} className={classes.field}>
+            <InputLabel className={classes.label}>Desired GPA *</InputLabel>
             <TextField
               autoComplete="fname"
-              name="firstName"
+              name="gpa"
               variant="outlined"
               required
               fullWidth
-              id="firstName"
-              label="First Name"
-              autoFocus
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="lastName"
-              label="Last Name"
-              name="lastName"
-              autoComplete="lname"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="filled-basic"
+              autoFocuss
+              value={gpa}
+              onChange={handleChangeGPA}
             />
           </Grid>
         </Grid>
@@ -112,7 +145,7 @@ const Form = () => {
           color="primary"
           className={classes.submit}
         >
-          Find your course
+          Start Matching
         </Button>
       </form>
     </div>
