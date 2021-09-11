@@ -19,8 +19,8 @@
 
 .cardDiv {
     background-color: transparent;
-    width: 530px;
-    height: 530px;
+    width: 600px;
+    height: 600px;
     perspective: 1000px; /* part of flipping animation */
     margin: 0;
     /* position: absolute;

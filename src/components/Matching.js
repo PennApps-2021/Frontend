@@ -16,9 +16,10 @@ class Matching extends React.Component{
 
         this.state={
             state: 0,
-            courseData: [
-                {A: 100, B: 50, C: 10, D: 23, F: 2, number: "140", degreeAttributes: "Natural Sciences", description: "Surveys the history of European and American art music in an international context; examines major artistic styles, representative composers and works, and their relationship to pertinent non-western musical traditions and philosophies; reviews fundamental music concepts; strengthens aural analytical skills; familiarizes students with the music library, and research and writing techniques. Prerequisite: First year standing in music or consent of instructor.", averageGPA: "4.0", credits: "3", name: "History of Germany", subject: "HIST", teachers: "Professor Ashay"},
-            ],
+            courseData: this.props.courseData,
+            // [
+            //     {A: 100, B: 50, C: 10, D: 23, F: 2, number: "140", degreeAttributes: "Natural Sciences", description: "Surveys the history of European and American art music in an international context; examines major artistic styles, representative composers and works, and their relationship to pertinent non-western musical traditions and philosophies; reviews fundamental music concepts; strengthens aural analytical skills; familiarizes students with the music library, and research and writing techniques. Prerequisite: First year standing in music or consent of instructor.", averageGPA: "4.0", credits: "3", name: "History of Germany", subject: "HIST", teachers: "Professor Ashay"},
+            // ],
             currentCourseIndex: 0
         }
 
@@ -59,6 +60,11 @@ class Matching extends React.Component{
     render() {
 
         let currentCourseIndex = this.state.currentCourseIndex;
+
+        if (currentCourseIndex < 0 || currentCourseIndex >= this.state.courseData.length) {
+            return <p>No courses found :</p>
+        }
+
         let currentCourseData = this.state.courseData[currentCourseIndex];
 
 

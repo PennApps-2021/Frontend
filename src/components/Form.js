@@ -94,7 +94,7 @@ const Form = (props) => {
       <FavoriteIcon className={classes.heart} />
       <LocalLibraryIcon className={classes.course} />
       <Typography component="h1" variant="h5" className={classes.title}>
-        Help us better know you
+        Help us know you better
       </Typography>
       <form className={classes.form} noValidate>
         <Grid container spacing={2}>
@@ -144,7 +144,7 @@ const Form = (props) => {
           variant="contained"
           color="primary"
           className={classes.submit}
-          onClick = {props.nextPage}
+          onClick = {() => props.getCourses(gpa, interests, majors)}
         >
           Start Matching
         </Button>

@@ -53,13 +53,14 @@ function CourseCard(props) {
 
 
     let courseData = props.courseData;
-    let name = courseData.name;
-    let title = courseData.subject + "" + courseData.number;
-    let credits = courseData.credits;
-    let averageGPA = courseData.averageGPA;
-    let teachers = courseData.teachers;
-    let description = courseData.description;
-    let degreeAttributes = courseData.degreeAttributes;
+    let name = courseData["Course Name"];
+    let title = courseData["Subject"] + "" + courseData["Number"];
+    let credits = courseData["Course Credit Hours"];
+    let averageGPA = courseData["Course Average GPA"];
+    averageGPA = Math.round(parseFloat(averageGPA) * 100) / 100;
+    let teachers = courseData["Teachers"];
+    let description = courseData["Course Description"];
+    let degreeAttributes = courseData["Degree Attributes"];
 
 
     let regularIconStyle = {
