@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "50px",
     width: "50vw",
     height: "500px",
-    borderStyle: "solid",
+    // borderStyle: "solid",
     borderColor: "black",
     borderRadius: "50px",
     backgroundColor: "white",
@@ -153,7 +153,7 @@ const Form = (props) => {
           variant="contained"
           color="primary"
           className={classes.submit}
-          onClick = {props.lastPage}
+          onClick={props.lastPage}
         >
           Back
         </Button>
