@@ -29,12 +29,17 @@ class Landing extends React.Component {
           <FavoriteIcon />
         </div>
 
-        <p>Match you with the best course!</p>
+        <p>Match you with your favorite courses!</p>
 
         <button
-          className = "searchBtn"
+          className="searchBtn"
           onClick={this.props.nextPage}
-          style = {{width: "200px"}}
+          style={{
+            width: "200px",
+            margin: "20px",
+            zIndex: 1,
+            position: "relative",
+          }}
         >
           Get Started
         </button>
