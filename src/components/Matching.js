@@ -110,6 +110,9 @@ class Matching extends React.Component{
                         <ArrowForwardRoundedIcon style = {disabledIconStyle}  />
                     }
                 </div>
+                <br/>
+                <br/>
+                <br/>
                 <button className = "searchBtn" onClick = {this.props.lastPage}>
                     Search Again
                 </button>

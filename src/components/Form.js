@@ -65,23 +65,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const interestList = [
-  { value: "psychology", label: "Psychology" },
-  { value: "westernculture", label: "Western Culture" },
-  { value: "easternculture", label: "Eastern Culture" },
-];
-
-const majorList = [
-  { value: "computerscience", label: "Computer Science" },
-  { value: "math", label: "Math" },
-  { value: "english", label: "English" },
-];
 
 const Form = (props) => {
   const classes = useStyles();
   const [gpa, setGPA] = useState("");
   const [interests, setInterests] = useState({ selectedOption: null });
   const [majors, setMajors] = useState({ selectedOption: null });
+
+  const interestList = props.interests;
+
+  const majorList = [
+    { value: "computerscience", label: "Computer Science" },
+    { value: "math", label: "Math" },
+    { value: "english", label: "English" },
+  ];
 
   const handleChangeGPA = (e) => {
     const onlyNums = e.target.value.replace(/[^0-9.]/g, "");

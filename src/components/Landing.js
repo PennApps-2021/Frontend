@@ -29,7 +29,7 @@ class Landing extends React.Component {
           <FavoriteIcon />
         </div>
 
-        <p>Match you with your favorite courses!</p>
+        <p>We match you with the best courses!</p>
 
         <button
           className="searchBtn"

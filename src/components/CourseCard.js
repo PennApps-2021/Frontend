@@ -242,6 +242,11 @@ for (var i = 0; i<list.length; i++) {
             </p>
           </div>
           <br />
+          <br />
+          <br />
+          <br />
+          <i>Flip for more info!</i>
+
 
           {!shouldFlip ? (
             <LoopRoundedIcon
@@ -262,6 +267,7 @@ for (var i = 0; i<list.length; i++) {
           <p>{getRandomPhrase() + " - " + getRandomName()}</p>
 
           <p>{getRandomPhrase() + " - " + getRandomName()}</p>
+
 
           {shouldFlip ? (
             <LoopRoundedIcon
