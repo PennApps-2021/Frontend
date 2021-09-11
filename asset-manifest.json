@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Frontend/static/css/main.d9a76f01.chunk.css",
+    "main.js": "/Frontend/static/js/main.94f63ec0.chunk.js",
+    "main.js.map": "/Frontend/static/js/main.94f63ec0.chunk.js.map",
+    "runtime-main.js": "/Frontend/static/js/runtime-main.d7b21c23.js",
+    "runtime-main.js.map": "/Frontend/static/js/runtime-main.d7b21c23.js.map",
+    "static/js/2.af876491.chunk.js": "/Frontend/static/js/2.af876491.chunk.js",
+    "static/js/2.af876491.chunk.js.map": "/Frontend/static/js/2.af876491.chunk.js.map",
+    "index.html": "/Frontend/index.html",
+    "static/css/main.d9a76f01.chunk.css.map": "/Frontend/static/css/main.d9a76f01.chunk.css.map",
+    "static/js/2.af876491.chunk.js.LICENSE.txt": "/Frontend/static/js/2.af876491.chunk.js.LICENSE.txt",
+    "static/media/LaptopOnCloud.79280f94.png": "/Frontend/static/media/LaptopOnCloud.79280f94.png",
+    "static/media/LongCloud.5e305f1c.png": "/Frontend/static/media/LongCloud.5e305f1c.png",
+    "static/media/MediumCloud.280a67dd.png": "/Frontend/static/media/MediumCloud.280a67dd.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d7b21c23.js",
+    "static/js/2.af876491.chunk.js",
+    "static/css/main.d9a76f01.chunk.css",
+    "static/js/main.94f63ec0.chunk.js"
+  ]
+}
