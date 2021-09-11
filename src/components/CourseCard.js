@@ -201,6 +201,7 @@ function CourseCard(props) {
                         <p><b className = "boldStyle">Requirement Fufilled✅</b> <br/>{degreeAttributes}</p>
                         <p><b className = "boldStyle">Professor🧑‍🏫</b> <br/>{teachers}</p>
                     </div>
+                    <br/>
 
                     {!shouldFlip
 

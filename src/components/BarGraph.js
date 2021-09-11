@@ -18,7 +18,7 @@ class BarGraph extends React.Component {
         data={[
           {type: 'bar', x: this.props.x, y: this.props.y},
         ]}
-        layout={{width: 400, height: 300, title: 'Past Grades in ' + this.props.className}}
+        layout={{width: 450, height: 350, title: 'Past Grades in ' + this.props.className}}
       />
     );
   }
