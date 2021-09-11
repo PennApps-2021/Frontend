@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import Landing from './Landing';
 class Main extends React.Component{
     constructor(props) {
         super(props)
@@ -29,27 +28,26 @@ class Main extends React.Component{
     }
 
     render() {
+
+
+        let body = null;
+
         switch(this.state.state) {
             case 0:
-
-                return (
-                    <p>Landing page</p>
-                );
-
+                body = <Landing goToForm = {() => this.changePage(1)}></Landing>
+                break;
             case 1:
-                return (
-                    <p>Form page</p>
-                );
+                body = <p>Form page</p>
+                break;
             case 2:
-                return (
-                    <p>Flash cards page</p>
-                );
-
+                body = <p>Flash cards page</p>
+                break;
             default:
-                return (
-                    <p>Error, please try again</p>
-                );
+                body = <p>Error, please try again</p>
         }
+
+
+        return body;
 
     }
 }
