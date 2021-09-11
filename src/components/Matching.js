@@ -16,15 +16,8 @@ class Matching extends React.Component{
 
         this.state={
             state: 0,
-            classData: [
-                {front: "hi", back: "bye"},
-                {front: "abc", back: "cba"},
-                {front: "hi", back: "bye"},
-                {front: "abc", back: "cba"},
-                {front: "hi", back: "bye"},
-                {front: "abc", back: "cba"},
-                {front: "hi", back: "bye"},
-                {front: "abc", back: "cba"}
+            courseData: [
+                {A: 100, B: 50, C: 10, D: 23, F: 2, number: "140", degreeAttributes: "Natural Sciences", description: "Surveys the history of European and American art music in an international context; examines major artistic styles, representative composers and works, and their relationship to pertinent non-western musical traditions and philosophies; reviews fundamental music concepts; strengthens aural analytical skills; familiarizes students with the music library, and research and writing techniques. Prerequisite: First year standing in music or consent of instructor.", averageGPA: "4.0", credits: "3", name: "History of Germany", subject: "HIST", teachers: "Professor Ashay"},
             ],
             currentCourseIndex: 0
         }
@@ -42,7 +35,7 @@ class Matching extends React.Component{
 
     nextCard() {
         let currentCourseIndex = this.state.currentCourseIndex;
-        let totalCourses = this.state.classData.length;
+        let totalCourses = this.state.courseData.length;
         if (currentCourseIndex < totalCourses - 1) {
             this.state["currentCourseIndex"] = currentCourseIndex + 1;
             this.setState(this.state);
@@ -66,14 +59,12 @@ class Matching extends React.Component{
     render() {
 
         let currentCourseIndex = this.state.currentCourseIndex;
-        let currentCourse = this.state.classData[currentCourseIndex];
-        let currentCourseName = currentCourse.front;
-        let currentCourseDescription = currentCourse.back;
+        let currentCourseData = this.state.courseData[currentCourseIndex];
 
 
-        let card = <CourseCard nextCard = {this.nextCard} lastCard = {this.lastCard} courseName = {currentCourseName} courseDescription = {currentCourseDescription}></CourseCard>;
+        let card = <CourseCard nextCard = {this.nextCard} lastCard = {this.lastCard} courseData = {currentCourseData}></CourseCard>;
 
-        let totalCourses = this.state.classData.length;
+        let totalCourses = this.state.courseData.length;
 
         let regularIconStyle = {
             fontSize: "50px",
