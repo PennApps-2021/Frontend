@@ -1,5 +1,6 @@
 import React from 'react';
 import Landing from './Landing';
+import Matching from './Matching';
 class Main extends React.Component{
     constructor(props) {
         super(props)
@@ -30,24 +31,16 @@ class Main extends React.Component{
     render() {
 
 
-        let body = null;
-
         switch(this.state.state) {
             case 0:
-                body = <Landing goToForm = {() => this.changePage(1)}></Landing>
-                break;
+                return <Landing goToForm = {() => this.changePage(2)}></Landing>
             case 1:
-                body = <p>Form page</p>
-                break;
+                return <p>Form page</p>
             case 2:
-                body = <p>Flash cards page</p>
-                break;
+                return <Matching goToForm = {() => this.changePage(1)}></Matching>
             default:
-                body = <p>Error, please try again</p>
+                return <p>Error, please try again</p>
         }
-
-
-        return body;
 
     }
 }
