@@ -9,7 +9,7 @@ class Main extends React.Component {
     this.changePage = this.changePage.bind(this);
 
     this.state = {
-      state: 1,
+      state: 0,
     };
   }
 

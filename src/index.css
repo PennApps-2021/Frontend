@@ -19,11 +19,8 @@ code {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 50vw;
+  width: 100vw;
   height: 500px;
   text-align: center;
   padding: 10px;
-  background-color: white;
-  border: 3px solid black;
-  border-radius: 15px;
 }

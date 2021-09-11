@@ -1,5 +1,10 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LongCloud from "../assets/LongCloud.png";
+import MediumCloud from "../assets/MediumCloud.png";
+import LaptopOnCloud from "../assets/LaptopOnCloud.png";
+import styles from "../assets/landing.css";
 
 class Landing extends React.Component {
   constructor(props) {
@@ -19,9 +24,12 @@ class Landing extends React.Component {
   render() {
     return (
       <div className="bodyDiv">
-        <h1>BeMyGenEd</h1>
+        <div className="header">
+          BeMyGenEd
+          <FavoriteIcon />
+        </div>
 
-        <p>Match your favorite course!</p>
+        <p>Match you with your favorite course!</p>
 
         <Button
           variant="contained"
@@ -30,6 +38,13 @@ class Landing extends React.Component {
         >
           Getting Started
         </Button>
+        <img alt="Long Cloud 1" src={LongCloud} className="longCloud" />
+        <img alt="Medium Cloud 1" src={MediumCloud} className="mediumCloud" />
+        <img
+          alt="Laptop on Cloud"
+          src={LaptopOnCloud}
+          className="laptopOnCloud"
+        />
       </div>
     );
   }
