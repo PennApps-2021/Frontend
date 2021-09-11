@@ -13,10 +13,6 @@ class Landing extends React.Component{
 
     }
 
-    changePage(newState) {
-
-    }
-
 
     componentDidMount() {
 
@@ -35,7 +31,7 @@ class Landing extends React.Component{
 
                 <p>Catchphrase</p>
 
-                <Button variant="contained" color="primary" onClick = {this.props.goToForm}>
+                <Button variant="contained" color="primary" onClick = {this.props.nextPage}>
                     Get Started
                 </Button>
             </div>

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Form = () => {
+const Form = (props) => {
   const classes = useStyles();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -111,8 +111,18 @@ const Form = () => {
           variant="contained"
           color="primary"
           className={classes.submit}
+          onClick = {props.nextPage}
         >
           Find your course
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick = {props.lastPage}
+        >
+          Back
         </Button>
       </form>
     </div>

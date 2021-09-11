@@ -30,4 +30,20 @@ code {
 
 }
 
+.bodyDivTransparent {
+  margin: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 515px;
+  height: fit-content;
+  text-align: center;
+  padding: 10px;
+}
 

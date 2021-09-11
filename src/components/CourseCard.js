@@ -1,44 +1,66 @@
 import {useEffect, useState, useRef} from 'react';
-
-import styles from '../assets/cards.css';
+import '../assets/cards.css';
 
 
 function CourseCard(props) {
 
-    let fullName = props.firstName + " " + props.lastName;
+    const [shouldFlip, setFlip] = useState(false);
 
-    //Sets the background of a div to the profile picture
-    let fullStyle = {
-        backgroundImage: "url('" + props.profile + "')",
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: "cover",
+    const containerRef = useRef();
+
+    const callbackFunction = (entries) => {
+        const [entry] = entries;
+        setFlip(entry.isIntersecting)
     }
 
-    /*Sets the font size of the description text to fill most of its container.
-    The formula for calculating this is dependent on text length, and found using exponential regression.
-    */
-    let descriptionLength = 100;
-
-    let mentorStyle = {
-        fontSize: Math.round(22.8669 * Math.pow(0.9988, descriptionLength)) + "px",
+    const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1
     }
 
-    let flipStyle = {};
+    function downHandler({ key }) {
+        if (key === "ArrowUp" || key == "ArrowDown") {
+          setFlip(!shouldFlip);
+        } else if (key === "ArrowRight") {
+            props.nextCard();
+        } else if (key == "ArrowLeft") {
+            props.lastCard();
+        }
+      }
+
+    useEffect(() => {
+        window.addEventListener("keydown", downHandler);
+        // Remove event listeners on cleanup
+        return () => {
+          window.removeEventListener("keydown", downHandler);
+        };
+      }, [shouldFlip]); 
+
+    let flipStyle;
 
 
-
+    if(shouldFlip) {
+        flipStyle = {
+            transform: 'rotateX(180deg)', /* part of flipping animation */
+        }
+    } else {
+        flipStyle = {
+            transform: 'rotateX(0deg)', /* part of flipping animation */
+        }
+    }
 
   return(
 
         <div className = 'cardDiv'>
             <div style = {flipStyle} className = 'cardDivInner'>
-                <div style = {fullStyle} className = 'cardDivFront'>
-                <div className = 'courseName'>
-                    {props.courseName}
+                <div className = 'cardDivFront'>
+                    <div className = 'courseName'>
+                        {props.courseName}
+                    </div>
                 </div>
-                </div>
-                <div className = {'cardDivBack'}>
-                    <p style = {mentorStyle} className = {'courseDescription'}> 
+                <div className = 'cardDivBack'>
+                    <p className = 'courseDescription'> 
                         {props.courseDescription}
                     </p>
                 </div>
