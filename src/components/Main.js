@@ -16,6 +16,7 @@ class Main extends React.Component {
     this.state = {
       state: 0,
       interests: [],
+      majors: [],
       courseData: []
     };
   }
@@ -32,15 +33,22 @@ class Main extends React.Component {
     httpRequest("formData", "POST", {
     }, d => {
 
-      console.log(d);
+      // console.log(d);
+
+      let majors = [];
+
+      for(let i = 0; i < d[0].length; i++) {
+        majors.push({value: d[0][i], label: d[0][i]})
+      }
 
       let interests = [];
 
-      for(let i = 0; i < d.length; i++) {
-        interests.push({value: d[i], label: d[i]})
+      for(let i = 0; i < d[1].length; i++) {
+        interests.push({value: d[1][i], label: d[1][i]})
       }
 
       this.state["interests"] = interests;
+      this.state["majors"] = majors;
 
       this.state["state"] = 1;
       this.setState(this.state);
@@ -86,7 +94,7 @@ class Main extends React.Component {
       major: majorStr,
       desiredGPA: gpa
     }, d => {
-      console.log(d);
+      // console.log(d);
       this.state["courseData"] = d;
       this.state["state"] = 2;
       this.setState(this.state);
@@ -104,7 +112,7 @@ class Main extends React.Component {
             case 0:
                 return <Landing nextPage = {this.startForm}></Landing>
             case 1:
-                return <Form interests = {this.state.interests} getCourses = {this.getCourses} lastPage = {() => this.changePage(0)} nextPage = {() => this.changePage(2)}/>;
+                return <Form majors = {this.state.majors} interests = {this.state.interests} getCourses = {this.getCourses} lastPage = {() => this.changePage(0)} nextPage = {() => this.changePage(2)}/>;
             case 2:
                 return <Matching courseData = {this.state.courseData} lastPage = {() => this.changePage(1)}></Matching>
             case 3:

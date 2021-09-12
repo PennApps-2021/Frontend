@@ -73,12 +73,7 @@ const Form = (props) => {
   const [majors, setMajors] = useState({ selectedOption: null });
 
   const interestList = props.interests;
-
-  const majorList = [
-    { value: "computerscience", label: "Computer Science" },
-    { value: "math", label: "Math" },
-    { value: "english", label: "English" },
-  ];
+  const majorList = props.majors;
 
   const handleChangeGPA = (e) => {
     const onlyNums = e.target.value.replace(/[^0-9.]/g, "");

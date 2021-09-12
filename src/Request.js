@@ -1,7 +1,6 @@
-export var url = "hhttps://mygened.ew.r.appspot.com/"
+export var url = "https://mygened.ew.r.appspot.com/"
 
 //http://localhost:3000/
-//https://mygened.ew.r.appspot.com/
 
 export function httpRequest(handler, method, body, callback) {
     const http = new XMLHttpRequest()

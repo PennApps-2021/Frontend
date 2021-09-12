@@ -215,12 +215,24 @@ for (var i = 0; i<list.length; i++) {
     return phrases[randomInteger(0, phrases.length - 1)];
   }
 
+
+
+  let dStyle = {
+    // fontSize: Math.round(33.8669 * Math.pow(0.9990, description.length)) + "px",
+}
+
+let maxDSize = 700;
+
+    if (description.length > maxDSize) {
+        description = description.substring(0, maxDSize) + "..."
+    }
+
   return (
     <div className="cardDiv">
       <div style={flipStyle} className="cardDivInner">
         <div className="cardDivFront">
           <div className="courseName">{title + " - " + name}</div>
-          <p className="courseDescription">{description}</p>
+          <p style = {dStyle} className="courseDescription">{description}</p>
 
           <div className="courseDataFlex">
             <p>
@@ -241,10 +253,6 @@ for (var i = 0; i<list.length; i++) {
               {teachers}
             </p>
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
           <i>Flip for more info!</i>
 
 
